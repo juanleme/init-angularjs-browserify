@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    require('angular');
+	require('angular');
 	require('./app.routes');
 	require('./components/home/home.controller');
 	require('./shared/hello/hello.directive');

@@ -2,7 +2,7 @@
 (function() {
     'use strict';
 
-    require('angular');
+	require('angular');
 	require('./app.routes');
 	require('./components/home/home.controller');
 	require('./shared/hello/hello.directive');
@@ -24,20 +24,20 @@
 
     module.exports = angular
 
-    .module('anbfy.routes', ['ui.router'])
-    
-        .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
-          
-          $urlRouterProvider.otherwise('/');
+      .module('anbfy.routes', ['ui.router'])
+      
+          .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+            
+            $urlRouterProvider.otherwise('/');
 
-          $stateProvider
-            .state('home', {
-              url: '/',
-              templateUrl: 'app/components/home/home.view.html',
-              controller: 'HomeController',
-              controllerAs: 'content'
-            });
-        });
+            $stateProvider
+              .state('home', {
+                url: '/',
+                templateUrl: 'app/components/home/home.view.html',
+                controller: 'HomeController',
+                controllerAs: 'content'
+              });
+          });
 })();
 
 },{"angular-ui-router":6}],3:[function(require,module,exports){
@@ -62,7 +62,7 @@
 
     module.exports = angular
 
-	    .module('anbfy.home.service', [])
+		.module('anbfy.home.service', [])
 			.factory('HomeService', homeService);
 				
 				function homeService () {

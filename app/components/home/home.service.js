@@ -3,7 +3,7 @@
 
     module.exports = angular
 
-	    .module('anbfy.home.service', [])
+		.module('anbfy.home.service', [])
 			.factory('HomeService', homeService);
 				
 				function homeService () {
