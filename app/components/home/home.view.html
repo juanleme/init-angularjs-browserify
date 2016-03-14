@@ -2,5 +2,13 @@
 	<div class="col-sm-12">
 		<h3 class="page-header">AngularJS + Browserify</h3>
 		<ab-hello-world>:)</ab-hello-world>
+		
+		<h4>Users from service: </h4>
+		<ul>
+			<li ng-repeat="user in home.users">
+				{{ user.id }} - {{ user.name }} | {{ user.email }}
+			</li>	
+		</ul>
+	
 	</div>
 </div>	
