@@ -3,8 +3,12 @@
 
 var gulp            = require('gulp'),
     clean           = require('gulp-clean'),
+    jshint          = require('gulp-jshint'),
+    uglify          = require('gulp-uglify'),
+    buffer          = require('vinyl-buffer'),
  // sass            = require('gulp-ruby-sass'),
- // concat          = require('gulp-concat'),
+ //   concat          = require('gulp-concat'),
+    streamify       = require('gulp-concat'),
 
     browserify      = require('browserify'),
     source          = require('vinyl-source-stream'),
@@ -22,7 +26,7 @@ server.all('/*', function(req, res) {
   res.sendfile('index.html');
 });
 
-gulp.task('dev', ['clean', 'browserify'], function() { });
+gulp.task('dev', ['clean', 'browserify', 'lint'], function() { });
 
 
 gulp.task('clean', function() {
@@ -34,15 +38,24 @@ gulp.task('browserify', function() {
   return browserify(['app/app.module.js'])
   .bundle()
   .pipe(source('main.js'))
+  .pipe(buffer())
+  .pipe(uglify({mangle: false}))
   .pipe(gulp.dest('src/js'));
 });
+
+gulp.task('lint', function() {
+  return gulp.src('src/js/main.js')
+    .pipe(jshint());
+});
+
 
 gulp.task('watch', function() {
 
   server.listen(serverport);
 
   gulp.watch(['app/*.js', 'app/**/*.js', 'app/**/**/*.js'],[
-    'browserify'
+    'browserify',
+    'lint'
   ]);
 
 });
