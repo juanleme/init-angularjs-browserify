@@ -35,7 +35,7 @@
                 url: '/',
                 templateUrl: 'app/components/home/home.view.html',
                 controller: 'HomeController',
-                controllerAs: 'content'
+                controllerAs: 'home'
               });
           });
 })();
@@ -49,11 +49,25 @@
     module.exports = angular
 
 	    .module('anbfy.home.controller', ['anbfy.home.service'])
-			.controller('HomeController', ['HomeService', homeController]);
+		.controller('HomeController', HomeController);
+		
+		HomeController.$inject = ['HomeService'];
 
-			function homeController (HomeService) {
-				this.smile = HomeService.smile();
+		function HomeController (HomeService) {
+			var vm = this;
+			
+			vm.users = [];
+			
+			activateUsers();
+			
+			function activateUsers() {
+				return HomeService.getUsers()
+				.then(function (data){
+					vm.users = data;
+					return vm.users;
+				});
 			}
+		}
 })();
 
 },{"./home.service":4}],4:[function(require,module,exports){
@@ -63,15 +77,28 @@
     module.exports = angular
 
 		.module('anbfy.home.service', [])
-			.factory('HomeService', homeService);
+		.factory('HomeService', HomeService);
 				
-				function homeService () {
-				    return {
-				       	smile: function() {
-					   		return ":)";
-				    	}
-				    };
-				}
+		HomeService.$inject = ['$http'];
+				
+		function HomeService ($http) {
+		    return {
+		       	getUsers: getUsers
+		    };
+		
+			function getUsers () {
+		   		return $http.get('http://jsonplaceholder.typicode.com/users')
+		   		.then(complete)
+		   		.catch(error);
+		    }
+		    function complete (response) {
+		    	return response.data;
+		    }
+		    function error (e) {
+		    	console.error('XHR Failed for getUsers: '+ e.data);
+		    }
+			
+		}
 })();
 
 },{}],5:[function(require,module,exports){
@@ -81,16 +108,16 @@
     module.exports = angular
 
     .module('anbfy.directive.hello', [])
-        .directive('abHelloWorld', helloWorld);
+    .directive('abHelloWorld', helloWorld);
 
-            function helloWorld () {
-                return {
-                    restrict: 'E',
-                    transclude: true,
-                    scope: {},
-                    templateUrl: 'app/shared/hello/hello.view.html'
-                }
-            }
+    function helloWorld () {
+        return {
+            restrict: 'E',
+            transclude: true,
+            scope: {},
+            templateUrl: 'app/shared/hello/hello.view.html'
+        }
+    }
 
 })();
 

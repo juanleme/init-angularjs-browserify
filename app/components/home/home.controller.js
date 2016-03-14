@@ -6,9 +6,23 @@
     module.exports = angular
 
 	    .module('anbfy.home.controller', ['anbfy.home.service'])
-			.controller('HomeController', ['HomeService', homeController]);
+		.controller('HomeController', HomeController);
+		
+		HomeController.$inject = ['HomeService'];
 
-			function homeController (HomeService) {
-				this.smile = HomeService.smile();
+		function HomeController (HomeService) {
+			var vm = this;
+			
+			vm.users = [];
+			
+			activateUsers();
+			
+			function activateUsers() {
+				return HomeService.getUsers()
+				.then(function (data){
+					vm.users = data;
+					return vm.users;
+				});
 			}
+		}
 })();
