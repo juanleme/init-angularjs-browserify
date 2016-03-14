@@ -25,19 +25,20 @@
     module.exports = angular
 
       .module('anbfy.routes', ['ui.router'])
+      .config(config);
       
-          .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
-            
-            $urlRouterProvider.otherwise('/');
+      function config ($stateProvider, $urlRouterProvider, $locationProvider) {
+        
+        $urlRouterProvider.otherwise('/');
 
-            $stateProvider
-              .state('home', {
-                url: '/',
-                templateUrl: 'app/components/home/home.view.html',
-                controller: 'HomeController',
-                controllerAs: 'home'
-              });
+        $stateProvider
+          .state('home', {
+            url: '/',
+            templateUrl: 'app/components/home/home.view.html',
+            controller: 'HomeController',
+            controllerAs: 'home'
           });
+      }
 })();
 
 },{"angular-ui-router":6}],3:[function(require,module,exports){
