@@ -1,14 +1,19 @@
 <div class="row">
 	<div class="col-sm-12">
 		<h3 class="page-header">AngularJS + Browserify</h3>
-		<ab-hello-world>:)</ab-hello-world>
+		<ab-hello-world><b>I'm just a transclude text! :)</b></ab-hello-world>
 		
 		<h4>Users from service: </h4>
-		<ul>
-			<li ng-repeat="user in home.users">
-				{{ user.id }} - {{ user.name }} | {{ user.email }}
+		<ul class="list-unstyled row">
+			<li class="col-sm-6" ng-repeat="user in home.users">
+				Id: <b>{{ user.id }}</b>
+				<ul class="list-unstyled">
+					<li>Name: <b>{{ user.name }}</b></li>
+					<li>E-mail:<b>{{ user.email }}</b></li>
+				</ul>
 			</li>	
 		</ul>
-	
 	</div>
 </div>	
+<h4>Response: </h4>
+<pre>{{ home | json}}</pre>

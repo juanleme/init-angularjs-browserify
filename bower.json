@@ -1,0 +1,19 @@
+{
+  "name": "anbfy",
+  "description": "AngularJS + Browserify and friends",
+  "license": "MIT",
+  "homepage": "https://github.com/juanleme/start-with-angularjs-browserify",
+  "moduleType": [
+    "globals"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "^3.3.6"
+  }
+}

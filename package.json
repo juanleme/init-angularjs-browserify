@@ -4,6 +4,7 @@
   "devDependencies": {
     "angular": "~1.4.8",
     "angular-ui-router": "*",
+    "bower": "^1.7.7",
     "browserify": "~13.0.0",
     "connect-livereload": "~0.5.4",
     "express": "~4.13.4",
@@ -13,6 +14,7 @@
     "gulp-jshint": "^2.0.0",
     "gulp-livereload": "~3.8.1",
     "gulp-ruby-sass": "~2.0.6",
+    "gulp-sass": "^2.2.0",
     "gulp-uglify": "^1.5.3",
     "jshint": "^2.9.1",
     "streamify": "^0.2.5",

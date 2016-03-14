@@ -6,8 +6,7 @@ var gulp            = require('gulp'),
     jshint          = require('gulp-jshint'),
     uglify          = require('gulp-uglify'),
     buffer          = require('vinyl-buffer'),
- // sass            = require('gulp-ruby-sass'),
- //   concat          = require('gulp-concat'),
+    sass            = require('gulp-sass'),
     streamify       = require('gulp-concat'),
 
     browserify      = require('browserify'),
@@ -26,7 +25,7 @@ server.all('/*', function(req, res) {
   res.sendfile('index.html');
 });
 
-gulp.task('dev', ['clean', 'browserify', 'lint'], function() { });
+gulp.task('dev', ['clean', 'sass', 'browserify', 'lint'], function() { });
 
 
 gulp.task('clean', function() {
@@ -43,6 +42,12 @@ gulp.task('browserify', function() {
   .pipe(gulp.dest('src/js'));
 });
 
+gulp.task('sass', function () {
+   return gulp.src('./assets/scss/*.scss')
+    .pipe(sass({ style: 'compressed' }).on('error', sass.logError))
+    .pipe(gulp.dest('src/css'));
+});
+
 gulp.task('lint', function() {
   return gulp.src('src/js/main.js')
     .pipe(jshint());
@@ -56,6 +61,9 @@ gulp.task('watch', function() {
   gulp.watch(['app/*.js', 'app/**/*.js', 'app/**/**/*.js'],[
     'browserify',
     'lint'
+  ]);
+  gulp.watch(['assets/scss/*.scss', 'assets/scss/**/*.scss', 'assets/scss/**/**/*.scss'],[
+    'sass'
   ]);
 
 });
