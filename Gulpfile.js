@@ -3,7 +3,7 @@
 
 var gulp            = require('gulp'),
     clean           = require('gulp-clean'),
-    jshint          = require('gulp-jshint'),
+    eslint          = require('gulp-eslint'),
     uglify          = require('gulp-uglify'),
     buffer          = require('vinyl-buffer'),
     sass            = require('gulp-sass'),
@@ -49,8 +49,10 @@ gulp.task('sass', function () {
 });
 
 gulp.task('lint', function() {
-  return gulp.src('src/js/main.js')
-    .pipe(jshint());
+  return gulp.src(['app/*.js', 'app/**/*.js'])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
 });
 
 
