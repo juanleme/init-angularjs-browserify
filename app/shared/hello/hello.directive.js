@@ -1,5 +1,5 @@
 (function() {
-    'use strict'
+    'use strict';
 
     module.exports = angular
 
@@ -12,7 +12,7 @@
             transclude: true,
             scope: {},
             templateUrl: 'app/shared/hello/hello.view.html'
-        }
+        };
     }
 
 })();
