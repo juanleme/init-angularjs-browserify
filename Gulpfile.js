@@ -37,8 +37,8 @@ gulp.task('browserify', function() {
     return browserify(['app/app.module.js'])
     .bundle()
     .pipe(source('main.js'))
-    .pipe(buffer())
-    .pipe(uglify({mangle: false}))
+    //.pipe(buffer())
+    //.pipe(uglify({mangle: false}))
     .pipe(gulp.dest('src/js'));
 });
 
